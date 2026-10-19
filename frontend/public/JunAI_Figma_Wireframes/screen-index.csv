@@ -1,0 +1,51 @@
+﻿ID,Screen,Group,Purpose
+S-01,Login,Auth,Form login dengan email/username dan password; tautan lupa password dan registrasi.
+S-02,Register,Auth,"Registrasi dimulai dari Guest; input nama, email, nomor telepon, password, dan role awal Guest."
+S-03,Forgot Password,Auth,Form permintaan tautan reset password melalui email.
+S-04,Reset Password,Auth,Form membuat password baru melalui tautan reset yang valid.
+S-05,Verifikasi Akun,Auth,Status dan tindakan verifikasi akun; mekanisme detail belum ditentukan PRD.
+S-06,Dashboard,Core,"Ringkasan meeting, dokumen, jadwal, dan aktivitas sesuai hak akses."
+S-07,Dashboard Aktivitas,Core,Ringkasan aktivitas meeting dan dokumen terbaru.
+S-08,Notifikasi,Core,"Daftar notifikasi: Meeting Reminder, Meeting Started, Meeting Ended."
+S-09,Profil Pengguna,Core,Detail profil dan informasi akun pengguna.
+S-10,Pengaturan,Core,Pengaturan umum akun; opsi yang belum didefinisikan ditandai sebagai asumsi.
+S-11,Pilih Platform Meeting,Meeting,"Pilih Discord, Zoom, atau Google Meet; PRD merekomendasikan Discord."
+S-12,Mulai Recorder,Meeting,Konfirmasi platform dan mulai rekaman.
+S-13,Recorder Aktif,Meeting,Status rekaman aktif dan kontrol berhenti; detail integrasi platform perlu divalidasi.
+S-14,Konfirmasi Akhiri Rekaman,Meeting,Dialog konfirmasi untuk menghentikan rekaman.
+S-15,Audio Processing,Meeting,Status penggabungan banyak file .pcm menjadi satu file .wav.
+S-16,Transkripsi / Hasil Audio,Meeting,Tahap praproses hasil audio; transkripsi eksplisit belum dijabarkan rinci di PRD.
+S-17,Generate Rangkuman AI,Meeting,Gemini merangkum hasil meeting dan menampilkan status pemrosesan.
+S-18,Daftar Dokumen,Documents,Daftar dokumen hasil generate AI dengan pencarian dan filter format.
+S-19,Detail Rangkuman,Documents,"Judul, author, tanggal, isi rangkuman, dan aksi ekspor."
+S-20,Ekspor PDF,Documents,Pemilihan format PDF dan konfirmasi ekspor.
+S-21,Ekspor TXT,Documents,Pemilihan format TXT dan konfirmasi ekspor.
+S-22,Unduh Dokumen,Documents,Status unduh dan informasi format file.
+S-23,Riwayat Dokumen,Documents,Riwayat perubahan/akses dokumen; detail event belum ditentukan PRD.
+S-24,Riwayat Meeting,History,"Daftar meeting dengan tanggal, judul, hasil, dan kontributor jika tersedia."
+S-25,Filter Riwayat,History,Filter rentang tanggal dan pencarian judul meeting.
+S-26,Detail Meeting,History,Informasi meeting dan tautan ke dokumen hasil generate.
+S-27,Kontributor Meeting,History,Daftar kontributor pada tiap sesi meeting.
+S-28,Ekspor Riwayat Excel,History,Pilih rentang waktu dan generate file Excel untuk Admin/Project Manager.
+S-29,Kalender Jadwal,Scheduling,Kalender jadwal / plan meeting.
+S-30,Buat Jadwal,Scheduling,"Form judul, waktu, jenis kegiatan, dan peserta; sebagian field merupakan asumsi desain."
+S-31,Detail Jadwal,Scheduling,Rincian jadwal dan pengingat.
+S-32,Edit Jadwal,Scheduling,Ubah detail jadwal; hanya untuk role yang berwenang.
+S-33,Pengaturan Reminder,Scheduling,Atur reminder kegiatan mendatang.
+S-34,Riwayat Reminder,Scheduling,Daftar reminder yang dibuat atau diterima pengguna.
+S-35,Daftar Pengguna,Users & RBAC,Daftar pengguna; Employee tidak dapat melihat akun Super Admin.
+S-36,Detail Pengguna,Users & RBAC,"Informasi user, role, status, dan verifikasi."
+S-37,Tambah Pengguna,Users & RBAC,Form penambahan pengguna oleh role berwenang; alur undangan adalah asumsi.
+S-38,Edit Pengguna,Users & RBAC,Edit informasi pengguna yang diizinkan.
+S-39,Ubah Role,Users & RBAC,Ubah role bawahan sesuai batasan RBAC.
+S-40,Status Akun,Users & RBAC,"Tampilkan Active, Inactive, Suspended."
+S-41,Akses Ditolak / RBAC,Users & RBAC,Pesan akses ditolak saat user mencoba membuka fitur yang tidak diizinkan.
+S-42,Daftar Follow-up,Follow-up,Daftar tindak lanjut/reminder; bentuk task list merupakan perluasan asumsi dari business logic.
+S-43,Detail Follow-up,Follow-up,Detail tindak lanjut dan timeline.
+S-44,Chat Reminder,Follow-up,Antarmuka chat sub-reminder; format pesan mengikuti entitas PRD.
+S-45,Riwayat Chat Reminder,Follow-up,Daftar percakapan reminder.
+S-46,Detail Notifikasi,Follow-up,"Detail judul, pesan, tipe, dan waktu notifikasi."
+S-47,Empty State,System,Tampilan ketika belum ada meeting atau dokumen.
+S-48,Loading AI,System,Status saat audio diproses dan rangkuman sedang dibuat.
+S-49,Error Pemrosesan,System,Pesan kegagalan pemrosesan dan opsi mencoba lagi; retry adalah asumsi UI.
+S-50,Pencarian Global,System,"Pencarian meeting, dokumen, dan pengguna berdasarkan akses role."

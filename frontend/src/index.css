@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Shadcn Default Dark Theme (Zinc / Obsidian) */
+    --background: 240 10% 3.9%;          /* #09090b */
+    --foreground: 0 0% 98%;              /* #fafafa */
+
+    --card: 240 10% 3.9%;                /* #09090b */
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;                 /* #fafafa crisp white CTA */
+    --primary-foreground: 240 5.9% 10%;  /* #18181b dark text on primary */
+
+    --secondary: 240 3.7% 15.9%;         /* #27272a (zinc-800) */
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;    /* #a1a1aa (zinc-400) */
+
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;            /* #27272a (zinc-800) */
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-bg: #09090b;
+    --sidebar-border: #27272a;
+    --sidebar-hover: #18181b;
+    --sidebar-active: #27272a;
+    --sidebar-text: #a1a1aa;
+    --sidebar-text-active: #fafafa;
+  }
+}
+
+* {
+  border-color: #27272a;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #09090b;
+  color: #fafafa;
+  min-height: 100vh;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Shadcn-style Card & Border Utility */
+.shadcn-card {
+  background-color: #09090b;
+  border: 1px solid #27272a;
+  border-radius: 0.5rem;
+}
+
+.shadcn-card-hover {
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.shadcn-card-hover:hover {
+  border-color: #3f3f46;
+  background-color: #0e0e11;
+}
+
+/* Custom Scrollbars in Dark Mode */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
