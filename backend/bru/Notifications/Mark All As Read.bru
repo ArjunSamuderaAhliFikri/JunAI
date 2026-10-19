@@ -1,0 +1,21 @@
+meta {
+  name: Mark All As Read
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{baseUrl}}/api/v1/notifications/read-all
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "userId": 1
+  }
+}

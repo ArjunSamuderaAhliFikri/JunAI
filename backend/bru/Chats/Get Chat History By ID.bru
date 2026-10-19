@@ -1,0 +1,11 @@
+meta {
+  name: Get Chat History By ID
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/v1/chats/{{chatId}}
+  body: none
+  auth: none
+}

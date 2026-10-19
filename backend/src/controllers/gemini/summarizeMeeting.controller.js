@@ -5,6 +5,7 @@ const fs = require("fs");
 const puppeteer = require("puppeteer");
 
 const path = require("path");
+const { dispatchNotification } = require("../../services/notification/notificationDispatcher.service");
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
@@ -354,6 +355,18 @@ const summarizeMeetingController = async (req, res) => {
 
     fs.writeFileSync(fullFilePath, pdfBuffer);
     console.log(`PDF berhasil disimpan di: ${fullFilePath}`);
+
+    // Dispatch real-time notification & Discord alert
+    const targetUserId = req.body.userId ? parseInt(req.body.userId) : 1;
+    dispatchNotification({
+      title: `Meeting Selesai: ${data.title || "Notulensi Rapat"}`,
+      message: `Rangkuman eksekutif dan PDF meeting berhasil diproses: ${filename}`,
+      type: "MEETING_ENDED",
+      userId: targetUserId,
+      sendDiscord: true,
+    }).catch((err) => {
+      console.warn("⚠️ Notification dispatch warning:", err.message);
+    });
 
     res.setHeader("Content-Type", "application/pdf");
     res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);

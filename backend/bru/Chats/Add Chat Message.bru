@@ -1,0 +1,22 @@
+meta {
+  name: Add Chat Message
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/v1/chats/{{chatId}}/messages
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "message": "Halo, tolong jadwalkan reminder untuk sprint review besok jam 10 pagi.",
+    "user_id": 1
+  }
+}

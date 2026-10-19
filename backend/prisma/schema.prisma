@@ -1,0 +1,172 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================
+// Enums
+// ============================================================
+
+enum ReminderTypeName {
+  KICK_OFF    @map("Kick Off")
+  DEADLINE    @map("Deadline")
+  FOLLOW_UP   @map("Follow Up")
+  CUSTOM      @map("Custom")
+}
+
+enum NotificationTypeName {
+  MEETING_REMINDER @map("Meeting Reminder")
+  MEETING_STARTED  @map("Meeting Started")
+  MEETING_ENDED    @map("Meeting Ended")
+}
+
+enum StatusUserName {
+  ACTIVE    @map("Active")
+  INACTIVE  @map("Inactive")
+  SUSPENDED @map("Suspended")
+}
+
+// ============================================================
+// Models
+// ============================================================
+
+model Role {
+  id         Int      @id @default(autoincrement())
+  name       String   @unique @db.VarChar(32)
+  code       String   @unique @db.VarChar(16)
+  is_active  Boolean  @default(true)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  users User[]
+
+  @@map("roles")
+}
+
+model User {
+  id              Int            @id @default(autoincrement())
+  username        String         @unique @db.VarChar(255)
+  address         String?        @db.VarChar(255)
+  email           String         @unique @db.VarChar(64)
+  password_hash   String         @db.VarChar(255)
+  phone_number    String?        @db.VarChar(64)
+  profile_picture String?        @db.VarChar(255)
+  status          StatusUserName @default(ACTIVE)
+  is_verified     Boolean        @default(false)
+  role_id         Int
+  created_at      DateTime       @default(now())
+  updated_at      DateTime       @updatedAt
+  deleted_at      DateTime?
+
+  // Relations
+  role                     Role                      @relation(fields: [role_id], references: [id])
+  meetwise_documents       MeetWise[]
+  notifications            Notification[]
+  reminders                Reminder[]
+  chat_sub_reminder_histories ChatSubReminderHistory[]
+  chat_reminder_details    ChatReminderHistoryDetail[]
+
+  @@map("users")
+}
+
+model MeetWise {
+  id            Int       @id @default(autoincrement())
+  name_document String    @unique @db.VarChar(255)
+  author_id     Int
+  is_deleted    Boolean   @default(false)
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
+  deleted_at    DateTime?
+
+  // Relations
+  author             User               @relation(fields: [author_id], references: [id])
+  document_histories DocumentHistory[]
+
+  @@map("meetwise_documents")
+}
+
+model DocumentHistory {
+  id          Int       @id @default(autoincrement())
+  document_id Int
+  is_deleted  Boolean   @default(false)
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+  deleted_at  DateTime?
+
+  // Relations
+  document MeetWise @relation(fields: [document_id], references: [id])
+
+  @@map("document_histories")
+}
+
+model Notification {
+  id         Int                  @id @default(autoincrement())
+  title      String               @db.VarChar(255)
+  message    String               @db.VarChar(255)
+  type       NotificationTypeName
+  user_id    Int
+  is_read    Boolean              @default(false)
+  is_deleted Boolean              @default(false)
+  created_at DateTime             @default(now())
+  updated_at DateTime             @updatedAt
+  deleted_at DateTime?
+
+  // Relations
+  user User @relation(fields: [user_id], references: [id])
+
+  @@map("notifications")
+}
+
+model Reminder {
+  id                Int              @id @default(autoincrement())
+  title             String           @db.VarChar(255)
+  timeline_activity DateTime
+  type              ReminderTypeName
+  user_id           Int
+  is_deleted        Boolean          @default(false)
+  created_at        DateTime         @default(now())
+  updated_at        DateTime         @updatedAt
+  deleted_at        DateTime?
+
+  // Relations
+  user User @relation(fields: [user_id], references: [id])
+
+  @@map("reminders")
+}
+
+model ChatSubReminderHistory {
+  id         Int       @id @default(autoincrement())
+  title      String    @db.VarChar(255)
+  user_id    Int
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  deleted_at DateTime?
+
+  // Relations
+  user    User                        @relation(fields: [user_id], references: [id])
+  details ChatReminderHistoryDetail[]
+
+  @@map("chat_sub_reminder_histories")
+}
+
+model ChatReminderHistoryDetail {
+  id             Int      @id @default(autoincrement())
+  message        String   @db.VarChar(255)
+  message_length Int
+  parent_chat_id Int
+  user_id        Int
+  created_at     DateTime @default(now())
+
+  // Relations
+  parent_chat ChatSubReminderHistory @relation(fields: [parent_chat_id], references: [id])
+  user        User                   @relation(fields: [user_id], references: [id])
+
+  @@map("chat_reminder_history_details")
+}

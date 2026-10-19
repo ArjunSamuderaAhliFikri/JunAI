@@ -1,0 +1,11 @@
+meta {
+  name: Mark As Read
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/api/v1/notifications/{{notificationId}}/read
+  body: none
+  auth: none
+}

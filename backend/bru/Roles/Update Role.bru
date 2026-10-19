@@ -1,0 +1,22 @@
+meta {
+  name: Update Role
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/api/v1/roles/{{roleId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Lead Project Manager",
+    "is_active": true
+  }
+}

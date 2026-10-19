@@ -1,0 +1,17 @@
+meta {
+  name: Get All Documents
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/v1/documents?page=1&limit=10&search=
+  body: none
+  auth: none
+}
+
+params:query {
+  page: 1
+  limit: 10
+  search: 
+}

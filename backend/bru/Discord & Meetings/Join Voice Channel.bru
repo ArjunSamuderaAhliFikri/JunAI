@@ -1,0 +1,22 @@
+meta {
+  name: Join Voice Channel
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/discord/join-voice
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "guildId": "1431130790372180061",
+    "channelId": "1477153793752957052"
+  }
+}

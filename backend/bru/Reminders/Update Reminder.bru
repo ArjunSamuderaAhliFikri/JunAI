@@ -1,0 +1,22 @@
+meta {
+  name: Update Reminder
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/api/v1/reminders/{{reminderId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "title": "Kick Off Proyek AI Agent (Diundur 1 Jam)",
+    "timeline_activity": "2026-10-25T11:00:00.000Z"
+  }
+}

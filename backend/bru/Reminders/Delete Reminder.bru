@@ -1,0 +1,11 @@
+meta {
+  name: Delete Reminder (Soft Delete)
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/api/v1/reminders/{{reminderId}}
+  body: none
+  auth: none
+}

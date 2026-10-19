@@ -1,0 +1,17 @@
+meta {
+  name: Get All Users
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/v1/users?page=1&limit=10&search=
+  body: none
+  auth: none
+}
+
+params:query {
+  page: 1
+  limit: 10
+  search: 
+}

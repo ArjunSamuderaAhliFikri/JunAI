@@ -1,6 +1,9 @@
 /backend/node_modules
 /backend/.env
 /backend/uploads
+/backend/docs
 
 /frontend/node_modules
 /frontend/.env
+
+/bru

@@ -1,0 +1,21 @@
+meta {
+  name: Stop Recording
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/discord/stop-recording
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "guildId": "1431130790372180061"
+  }
+}

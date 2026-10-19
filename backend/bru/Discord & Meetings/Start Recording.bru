@@ -1,0 +1,21 @@
+meta {
+  name: Start Recording
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/discord/start-recording
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "guildId": "1431130790372180061"
+  }
+}

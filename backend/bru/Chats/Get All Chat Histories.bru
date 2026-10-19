@@ -1,0 +1,17 @@
+meta {
+  name: Get All Chat Histories
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/v1/chats?page=1&limit=10&userId={{userId}}
+  body: none
+  auth: none
+}
+
+params:query {
+  page: 1
+  limit: 10
+  userId: {{userId}}
+}

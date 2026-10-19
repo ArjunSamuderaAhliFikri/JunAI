@@ -1,0 +1,11 @@
+meta {
+  name: Delete Notification (Soft Delete)
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{baseUrl}}/api/v1/notifications/{{notificationId}}
+  body: none
+  auth: none
+}

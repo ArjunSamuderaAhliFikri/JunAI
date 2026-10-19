@@ -1,0 +1,27 @@
+meta {
+  name: Create User
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/v1/users
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "username": "alex_turner",
+    "email": "alex@example.com",
+    "password_hash": "$2b$10$dummyhashedpassword123456789",
+    "role_id": 1,
+    "status": "ACTIVE",
+    "phone_number": "081234567890",
+    "address": "Jakarta, Indonesia"
+  }
+}

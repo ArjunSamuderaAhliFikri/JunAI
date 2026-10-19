@@ -1,0 +1,143 @@
+Table MeetWise {
+  id integer [primary key, not null, increment]
+  name_document varchar(255) [unique]
+  author_id integer
+  is_deleted boolean
+  created_at timestamp
+  updated_at timestamp
+  deleted_at timestamp
+}
+
+Table Role {
+  id integer [primary key, not null, increment]
+  name varchar(32) [unique]
+  code varchar(16) [unique]
+  is_active boolean
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table User {
+  id integer [primary key, not null, increment]
+  username varchar(255) [unique]
+  address varchar(255)
+  email varchar(64) [unique]
+  password_hash varchar(255)
+  phone_number varchar(64)
+  profile_picture varchar(255)
+  status StatusUserName
+  is_verified boolean
+  role_id integer
+  created_at timestamp
+  updated_at timestamp
+  deleted_at timestamp
+}
+
+Table Document_Histories {
+  id integer [primary key, not null, increment]
+  document_id integer
+  is_deleted boolean
+  created_at timestamp
+  updated_at timestamp
+  deleted_at timestamp
+}
+
+Table Notification {
+  id integer [primary key, not null, increment]
+  title varchar(255) [unique]
+  message varchar(255)
+  type NotificationTypeName
+  user_id integer
+  is_deleted boolean
+  created_at timestamp
+  updated_at timestamp
+  deleted_at timestamp
+}
+
+Table Reminder {
+  id integer [primary key, not null, increment]
+  title varchar(255) [unique]
+  timeline_activity timestamp
+  type ReminderTypeName
+  user_id integer
+  is_deleted boolean
+  created_at timestamp
+  updated_at timestamp
+  deleted_at timestamp
+}
+
+Table Chat_Sub_Reminder_Histories {
+  id integer [primary key, not null, increment]
+  title varchar(255)
+  user_id integer
+  created_at timestamp
+  updated_at timestamp
+  deleted_at timestamp
+}
+
+Table Chat_Reminder_History_Detail {
+  id integer [primary key, not null, increment]
+  message varchar(255)
+  message_length integer
+  parent_chat_id integer
+  user_id integer
+  created_at timestamp
+}
+
+Enum ReminderTypeName {
+  "Kick Off"
+    "Deadline"
+      "Follow Up"
+        "Custom"
+}
+
+Enum NotificationTypeName {
+  "Meeting Reminder"
+    "Meeting Started"
+      "Meeting Ended"
+}
+
+Enum StatusUserName {
+  "Active"
+    "Inactive"
+      "Suspended"
+}
+
+// Supporting Table
+Table ReminderTypeTable {
+  id integer [primary key, not null, increment]
+  name ReminderType [not null]
+}
+
+Table NotificationTypeTable {
+  id integer [primary key, not null, increment]
+  name NotificationTypeName [not null]
+}
+
+Table StatusUserTable {
+  id integer [primary key, not null, increment]
+  name StatusUserName [not null]
+
+}
+
+Ref: "MeetWise"."author_id" - "User"."id"
+
+Ref: "Role"."id" ?<? "User"."role_id"
+
+Ref: "Chat_Reminder_History_Detail"."user_id" ?>? "User"."id"
+
+Ref: "Chat_Sub_Reminder_Histories"."id" ?<? "Chat_Reminder_History_Detail"."parent_chat_id"
+
+Ref: "User"."id" ?<? "Chat_Sub_Reminder_Histories"."user_id"
+
+Ref: "User"."id" ?<? "Notification"."user_id"
+
+Ref: "MeetWise"."id" ?<? "Document_Histories"."document_id"
+
+Ref: "Reminder"."user_id" ?>? "User"."id"
+
+Ref: "Reminder"."type" ?>? "ReminderTypeTable"."id"
+
+Ref: "Notification"."type" <>? "NotificationTypeTable"."name"
+
+Ref: "StatusUserTable"."id" ?<? "User"."status"

@@ -1,0 +1,11 @@
+meta {
+  name: Get Unread Count
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/v1/notifications/unread-count/{{userId}}
+  body: none
+  auth: none
+}

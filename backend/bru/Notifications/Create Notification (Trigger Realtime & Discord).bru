@@ -1,0 +1,25 @@
+meta {
+  name: Create Notification (Trigger Realtime & Discord)
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/v1/notifications
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "title": "Meeting Evaluasi Bulanan Dimulai",
+    "message": "Meeting evaluasi performa kuartal 4 sudah dimulai di voice channel Discord.",
+    "type": "MEETING_STARTED",
+    "user_id": 1,
+    "sendDiscord": true
+  }
+}

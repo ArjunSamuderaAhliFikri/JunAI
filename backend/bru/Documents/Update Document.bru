@@ -1,0 +1,21 @@
+meta {
+  name: Update Document
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/api/v1/documents/{{documentId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name_document": "Notulensi Sprint Review Q3 2026 - Revised"
+  }
+}

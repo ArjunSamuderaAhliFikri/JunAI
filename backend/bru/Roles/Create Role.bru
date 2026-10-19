@@ -1,0 +1,23 @@
+meta {
+  name: Create Role
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/v1/roles
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Project Manager",
+    "code": "PM",
+    "is_active": true
+  }
+}

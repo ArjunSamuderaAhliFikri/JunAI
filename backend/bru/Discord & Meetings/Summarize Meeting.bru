@@ -1,0 +1,16 @@
+meta {
+  name: Summarize Meeting (AI Gemini & PDF)
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/summarize-meeting
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  sessionId: session_test
+  userId: 1
+}
